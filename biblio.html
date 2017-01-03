@@ -16,6 +16,7 @@ th, td {
 				<th rowspan="2">#</th>
 				<th colspan="4">Property Name</th>
 				<th rowspan="2">Description</th>
+				<th rowspan="2">Type</th>
 				<th rowspan="2">Example</th>
 				<th colspan="2">Occurrences</th>
 			</tr>
@@ -33,6 +34,7 @@ th, td {
 				<td></td>
 				<td colspan="4"></td>
 				<td>Start of JSON</td>
+				<td></td>
 				<td>
 <pre><code>{</code></pre>
 				</td>
@@ -43,6 +45,7 @@ th, td {
 				<td>1</td>
 				<td colspan="4">canonical</td>
 				<td>Canonical IRI</td>
+				<td>String</td>
 				<td>
 <pre><code>	"canoninal": "http://library.example.org/4a100c1c-292e-4fe3-8ce0-072d53abbd84"</code></pre>
 				</td>
@@ -53,6 +56,7 @@ th, td {
 				<td>2</td>
 				<td colspan="4">id</td>
 				<td>Identifiers</td>
+				<td>Object</td>
 				<td>
 <pre><code>	"id": {
 		"JPNO": "Perfect C++"
@@ -66,6 +70,7 @@ th, td {
 				<td></td>
 				<td colspan="3">isbn13</td>
 				<td>ISBN-13</td>
+				<td>String</td>
 				<td>
 <pre><code>		"isbn13": "9784790000000"</code></pre>
 				</td>
@@ -77,6 +82,7 @@ th, td {
 				<td></td>
 				<td colspan="3">isbn10</td>
 				<td>ISBN-10</td>
+				<td>String</td>
 				<td>
 <pre><code>		"isbn10": "4790000000"</code></pre>
 				</td>
@@ -88,6 +94,7 @@ th, td {
 				<td></td>
 				<td colspan="3">mlid</td>
 				<td>Minerva Local Identifier</td>
+				<td>String</td>
 				<td>
 <pre><code>		"mlid": "4a100c1c-292e-4fe3-8ce0-072d53abbd84"</code></pre>
 				</td>
@@ -99,6 +106,7 @@ th, td {
 				<td></td>
 				<td colspan="3">msid</td>
 				<td>Minerva Standard Identifier</td>
+				<td>String</td>
 				<td>
 <pre><code>		"msid": "ede7fed0-4be5-446a-b448-0b013ee09e2f"</code></pre>
 				</td>
@@ -110,6 +118,7 @@ th, td {
 				<td></td>
 				<td colspan="3">issn</td>
 				<td>International Standard Serial Number</td>
+				<td>String</td>
 				<td>
 <pre><code>		"issn": "1234-5555"</code></pre>
 				</td>
@@ -120,6 +129,7 @@ th, td {
 				<td>3</td>
 				<td colspan="4">title</td>
 				<td>Title</td>
+				<td>Object (Language Map)</td>
 				<td>
 <pre><code>	"title": <em>Language Maps</em></code></pre>
 				</td>
@@ -130,6 +140,7 @@ th, td {
 				<td>4</td>
 				<td colspan="4">alt_title</td>
 				<td>Alternative Title</td>
+				<td>Object (Language Map)</td>
 				<td>
 <pre><code>	"alt_title": <em>Language Maps</em></code></pre>
 				</td>
@@ -140,6 +151,7 @@ th, td {
 				<td>5</td>
 				<td colspan="4">creator</td>
 				<td>Creators</td>
+				<td>Array</td>
 				<td rowspan="2">
 <pre><code>	"creator": [
 		{
@@ -155,6 +167,7 @@ th, td {
 				<td></td>
 				<td colspan="3">name</td>
 				<td>Name of the creator</td>
+				<td>Object (Language Map)</td>
 				<td>1</td>
 				<td>1</td>
 			</tr>
@@ -162,6 +175,7 @@ th, td {
 				<td>6</td>
 				<td colspan="4">publisher</td>
 				<td>Publishers</td>
+				<td>Array</td>
 				<td rowspan="3">
 <pre><code>	"publisher": [
 		{
@@ -178,6 +192,7 @@ th, td {
 				<td></td>
 				<td colspan="3">name</td>
 				<td>Name of the publisher</td>
+				<td>Object (Language Map)</td>
 				<td>1</td>
 				<td>1</td>
 			</tr>
@@ -186,6 +201,7 @@ th, td {
 				<td></td>
 				<td colspan="3">location</td>
 				<td>Location of the publisher</td>
+				<td>String</td>
 				<td>0</td>
 				<td>1</td>
 			</tr>
@@ -193,6 +209,7 @@ th, td {
 				<td>7</td>
 				<td colspan="4">issued</td>
 				<td>Issued Date</td>
+				<td>String</td>
 				<td>
 <pre><code>	"issued": "2017-01-01"</code></pre>
 				</td>
@@ -203,15 +220,6 @@ th, td {
 				<td></td>
 				<td colspan="4"></td>
 				<td></td>
-				<td>
-<pre><code>	"": </code></pre>
-				</td>
-				<td>1</td>
-				<td>1</td>
-			</tr>
-			<tr>
-				<td></td>
-				<td colspan="4"></td>
 				<td></td>
 				<td>
 <pre><code>	"": </code></pre>
@@ -223,15 +231,6 @@ th, td {
 				<td></td>
 				<td colspan="4"></td>
 				<td></td>
-				<td>
-<pre><code>	"": </code></pre>
-				</td>
-				<td>1</td>
-				<td>1</td>
-			</tr>
-			<tr>
-				<td></td>
-				<td colspan="4"></td>
 				<td></td>
 				<td>
 <pre><code>	"": </code></pre>
@@ -242,6 +241,29 @@ th, td {
 			<tr>
 				<td></td>
 				<td colspan="4"></td>
+				<td></td>
+				<td></td>
+				<td>
+<pre><code>	"": </code></pre>
+				</td>
+				<td>1</td>
+				<td>1</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td colspan="4"></td>
+				<td></td>
+				<td></td>
+				<td>
+<pre><code>	"": </code></pre>
+				</td>
+				<td>1</td>
+				<td>1</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td colspan="4"></td>
+				<td></td>
 				<td></td>
 				<td>
 <pre><code>	"": </code></pre>
