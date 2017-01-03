@@ -1,11 +1,11 @@
 {
 	"canoninal": "http://library.example.org/4a100c1c-292e-4fe3-8ce0-072d53abbd84",
-	"id": {
-		"isbn13": "9784041026229",
-		"isbn10": "4041026229",
-		"mlid": "4a100c1c-292e-4fe3-8ce0-072d53abbd84",
-		"msid": "ede7fed0-4be5-446a-b448-0b013ee09e2f"
-	},
+	"id": [
+		"isbn:9784041026229",
+		"isbn:4041026229",
+		"mlid:4a100c1c-292e-4fe3-8ce0-072d53abbd84",
+		"msid:ede7fed0-4be5-446a-b448-0b013ee09e2f"
+	],
 	"title": {
 		"ja": "小説 君の名は。",
 		"ja-Hira-t-ja": "しょうせつ きみの なは。",
