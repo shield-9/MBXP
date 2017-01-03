@@ -55,26 +55,8 @@ th, td {
 			<tr>
 				<td>2</td>
 				<td colspan="4">id</td>
-				<td>Identifiers</td>
-				<td>Array</td>
-				<td rowspan="2">
-<pre><code>	"id": [
-		"isbn:9784790000000",
-		"isbn:4790000000",
-		"mlid:library.example.org/4a100c1c-292e-4fe3-8ce0-072d53abbd84",
-		"msid:ede7fed0-4be5-446a-b448-0b013ee09e2f",
-		"issn:1234-5555"
-	]</code></pre>
-				</td>
-				<td>1</td>
-				<td>1</td>
-			</tr>
-			<tr>
-				<td>2-1</td>
-				<td></td>
-				<td colspan="3"></td>
 				<td>
-					Identifier<br />
+					Identifiers<br />
 					<br />
 					Each type of IRI can be appear more than once. In that case, the user-agent can choose what to use.<br />
 					<em>Types:</em>
@@ -89,8 +71,17 @@ th, td {
 						<dl>Minerva standard IDentifier. The URI is controlled by Minerva development team.</dl>
 					</dl>
 				</td>
-				<td>String (IRI)</td>
-				<td>0</td>
+				<td>Array of String (IRI)</td>
+				<td>
+<pre><code>	"id": [
+		"isbn:9784790000000",
+		"isbn:4790000000",
+		"mlid:library.example.org/4a100c1c-292e-4fe3-8ce0-072d53abbd84",
+		"msid:ede7fed0-4be5-446a-b448-0b013ee09e2f",
+		"issn:1234-5555"
+	]</code></pre>
+				</td>
+				<td>1</td>
 				<td>1</td>
 			</tr>
 			<tr>
