@@ -44,8 +44,12 @@ th, td {
 			<tr>
 				<td>1</td>
 				<td colspan="4">canonical</td>
-				<td>Canonical IRI</td>
-				<td>String (IRI)</td>
+				<td>
+					Canonical IRI<br />
+					<br />
+					This IRI should be based on MLID, created by your Minerva environments. To avoid unnecessary confusion, using MSID-based IRI for this property is limited to Minerva development team.
+				</td>
+				<td>String</td>
 				<td>
 <pre><code>	"canoninal": "mlid:library.example.org/4a100c1c-292e-4fe3-8ce0-072d53abbd84"</code></pre>
 				</td>
@@ -159,16 +163,24 @@ th, td {
 				<td>6-2</td>
 				<td></td>
 				<td colspan="3">location</td>
-				<td>Location of the publisher</td>
-				<td>String (Country Code or Country Subdivision Code; ISO 3166-1 and ISO 3166-2)</td>
+				<td>
+					Location of the publisher<br />
+					<br />
+					Country Code or Country Subdivision Code (ISO 3166-1 and ISO 3166-2).
+				</td>
+				<td>String</td>
 				<td>0</td>
 				<td>1</td>
 			</tr>
 			<tr>
 				<td>7</td>
 				<td colspan="4">issued</td>
-				<td>Issued Date</td>
-				<td>String (Date; ISO 8601; Time zone designators are required to include time information)</td>
+				<td>
+					Issued Date<br />
+					<br />
+					Date and time (ISO 8601). <strong>Time zone designators</strong> are required to include time information.
+				</td>
+				<td>String</td>
 				<td>
 <pre><code>	"issued": "2017-01-01"</code></pre>
 				</td>
