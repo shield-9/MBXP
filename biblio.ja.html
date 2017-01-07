@@ -33,7 +33,7 @@ th, td {
 			<tr>
 				<td></td>
 				<td colspan="4"></td>
-				<td>Start of JSON</td>
+				<td>JSONの開始</td>
 				<td></td>
 				<td>
 <pre><code>{</code></pre>
@@ -45,9 +45,9 @@ th, td {
 				<td>1</td>
 				<td colspan="4">canonical</td>
 				<td>
-					Canonical IRI<br />
+					IRI<br />
 					<br />
-					This IRI should be based on MLID, created by your Minerva environments. To avoid unnecessary confusion, using MSID-based IRI for this property is limited to Minerva development team.
+					このIRIはお使いのMinerva環境が生成するMLIDに基づいたものである必要があります。無用な混乱を避けるため、このプロパティにMSIDベースのIRIを使用することができるのは、Minervaの開発チームに限定されます。
 				</td>
 				<td>String</td>
 				<td>
@@ -60,19 +60,19 @@ th, td {
 				<td>2</td>
 				<td colspan="4">id</td>
 				<td>
-					Identifiers<br />
+					識別子<br />
 					<br />
-					Each type of IRI can be appear more than once. In that case, the user-agent can choose what to use.<br />
-					<em>Types:</em>
+					各種のIRIはそれぞれ1回以上出現することができます。そのような場合、ユーザエージェントはどれを使用するか選択することができます。<br />
+					<em>種類:</em>
 					<dl>
 						<dt><code>isbn:</code></dt>
-						<dl>ISBN-10 or ISBN-13 (International Standard Book Number; ISO 2108:2005).</dl>
+						<dl>ISBN-10かISBN-13 (International Standard Book Number; ISO 2108:2005)。</dl>
 						<dt><code>issn:</code></dt>
-						<dl>ISSN (International Standard Serial Number; ISO 3297:2007).</dl>
+						<dl>ISSN (International Standard Serial Number; ISO 3297:2007)。</dl>
 						<dt><code>mlid:</code></dt>
-						<dl>Minerva Local IDentifier. The URI must be same as "canoninal" property.</dl>
+						<dl>Minerva Local IDentifier。このURIは"canoninal"プロパティを一致しなければいけません。</dl>
 						<dt><code>msid:</code></dt>
-						<dl>Minerva standard IDentifier. The URI is controlled by Minerva development team.</dl>
+						<dl>Minerva standard IDentifier。このURIはMinervaの開発チームによって管理されます。</dl>
 					</dl>
 				</td>
 				<td>Array of String (IRI)</td>
@@ -91,7 +91,7 @@ th, td {
 			<tr>
 				<td>3</td>
 				<td colspan="4">title</td>
-				<td>Title</td>
+				<td>タイトル</td>
 				<td>Object (Language Map)</td>
 				<td>
 <pre><code>	"title": <em>Language Maps</em></code></pre>
@@ -102,7 +102,7 @@ th, td {
 			<tr>
 				<td>4</td>
 				<td colspan="4">alt_title</td>
-				<td>Alternative Title</td>
+				<td>サブタイトル</td>
 				<td>Object (Language Map)</td>
 				<td>
 <pre><code>	"alt_title": <em>Language Maps</em></code></pre>
