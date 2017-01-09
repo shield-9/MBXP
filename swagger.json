@@ -204,7 +204,8 @@
           "pattern" : ""
         },
         "body" : {
-          "type" : "string"
+          "type" : "string",
+          "description" : "リクエストの本文。"
         },
         "uri" : {
           "type" : "string",
@@ -233,7 +234,8 @@
           "description" : "ユーザが指定したリクエストのID。"
         },
         "body" : {
-          "type" : "string"
+          "type" : "string",
+          "description" : "レスポンスの本文。"
         }
       },
       "description" : "レスポンスの配列。"
