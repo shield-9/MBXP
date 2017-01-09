@@ -1,0 +1,242 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Move your app forward with the Uber API",
+    "version" : "0.1.0",
+    "title" : "Minerva API"
+  },
+  "host" : "api.minerva.example.org",
+  "basePath" : "/v1",
+  "schemes" : [ "https" ],
+  "produces" : [ "application/json" ],
+  "paths" : {
+    "/batch" : {
+      "post" : {
+        "tags" : [ "Meta" ],
+        "summary" : "バッチ処理",
+        "description" : "複数の処理を同時にリクエストする。",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : true,
+          "schema" : {
+            "type" : "array",
+            "description" : "リクエストの配列。",
+            "items" : {
+              "$ref" : "#/definitions/body"
+            }
+          }
+        } ],
+        "responses" : {
+          "207" : {
+            "description" : "テスト",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/inline_response_207"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/biblio/{id}/" : {
+      "get" : {
+        "tags" : [ "Biblio" ],
+        "summary" : "書誌情報",
+        "description" : "このエンドポイントは指定されたIDを持つ書誌に関する情報を返す。",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "description" : "[MSID]()もしくは[MLID]()。\n\n* *Minerva Central*へのリクエストにおいて、MLIDは使用できない。\n* MLIDを使用する場合、当該のMLIDを発行した*Minerva*環境への\n  リクエストでなければならない。",
+          "required" : true,
+          "type" : "string",
+          "format" : "uuid"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "該当する書誌が存在する場合",
+            "schema" : {
+              "$ref" : "#/definitions/Biblio"
+            }
+          },
+          "404" : {
+            "description" : "該当する書誌が存在しない場合\n\nRFC 7807に準拠したレスポンスであることを明示するため、\n`content-type`ヘッダーは常に`application/problem+json`である。",
+            "schema" : {
+              "$ref" : "#/definitions/NotFound"
+            }
+          },
+          "default" : {
+            "description" : "予期せぬエラー\n\nRFC 7807に準拠したレスポンスであることを明示するため、\n`content-type`ヘッダーは常に`application/problem+json`である。",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Biblio" : {
+      "type" : "object",
+      "properties" : {
+        "canonical" : {
+          "type" : "string",
+          "example" : "library.example.org/4a100c1c-292e-4fe3-8ce0-072d53abbd84",
+          "description" : "MSIDもしくはMLID。このプロパティにMSIDを使用することができるのは、\nMinervaの開発チームに限定される。また、MLIDを使用する場合は先頭に\n当該のMLIDを発行した*Minerva*環境のドメイン名を付加する。"
+        },
+        "id" : {
+          "type" : "array",
+          "description" : "URI形式の識別子の配列。このプロパティに指定可能な識別子の詳細は [識別子の書式]()を参照のこと。",
+          "items" : {
+            "type" : "string"
+          }
+        },
+        "title" : {
+          "$ref" : "#/definitions/LanguageMap"
+        },
+        "creator" : {
+          "type" : "array",
+          "description" : "書誌の作成者。",
+          "items" : {
+            "$ref" : "#/definitions/Creator"
+          }
+        },
+        "publisher" : {
+          "type" : "array",
+          "description" : "書誌の出版者。",
+          "items" : {
+            "$ref" : "#/definitions/Publisher"
+          }
+        },
+        "issued" : {
+          "type" : "string",
+          "format" : "date",
+          "description" : "出版日。"
+        }
+      }
+    },
+    "Creator" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "将来的な使用のために予約する。"
+        },
+        "name" : {
+          "$ref" : "#/definitions/LanguageMap"
+        }
+      }
+    },
+    "Publisher" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "将来的な使用のために予約する。"
+        },
+        "name" : {
+          "$ref" : "#/definitions/LanguageMap"
+        },
+        "location" : {
+          "$ref" : "#/definitions/ISO3166"
+        }
+      },
+      "description" : "出版者名と出版地"
+    },
+    "LanguageMap" : {
+      "type" : "object",
+      "format" : "language-map",
+      "description" : "JSON-LDの[言語マップ] (https://www.w3.org/TR/json-ld/#string-internationalization)。",
+      "example" : {
+        "ja" : "日本語のコンテンツ。",
+        "ja-Hira" : "ひらがなの こんてんつ。",
+        "en-US-t-ja" : "Content in American English, translated fron Japanese."
+      },
+      "additionalProperties" : {
+        "type" : "string"
+      }
+    },
+    "ISO3166" : {
+      "type" : "string",
+      "description" : "ISO 3166-1もしくはISO 3166-2に基づくコード。",
+      "example" : "JP-13"
+    },
+    "Error" : {
+      "type" : "object",
+      "required" : [ "code", "message" ],
+      "properties" : {
+        "code" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "エラーコード。RFCで規定されるHTTPステータスコードのいずれか。",
+          "default" : 418
+        },
+        "message" : {
+          "type" : "string",
+          "description" : "エラーメッセージ。人間が読むことのできる形式のエラーの詳細。",
+          "default" : "これはティーポットです。"
+        }
+      }
+    },
+    "NotFound" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Error"
+      }, { } ],
+      "example" : [ {
+        "code" : 404,
+        "message" : "指定されたリソースは見つかりませんでした。"
+      } ]
+    },
+    "body" : {
+      "required" : [ "id", "uri" ],
+      "properties" : {
+        "method" : {
+          "type" : "string",
+          "description" : "リクエストのメソッド。",
+          "enum" : [ "GET", "POST", "PUT", "DELETE", "PATCH", "HEAD", "OPTIONS" ],
+          "default" : "GET"
+        },
+        "id" : {
+          "type" : "string",
+          "description" : "リクエストのID。\n\nユーザは当該のバッチリクエスト内において、一意な値を\nこのプロパティに指定しなければならない。\nレスポンスはリクエストと同順であることが**保証されない。**\n\nまた、エンドユーザを特定できる情報などを含めてはいけない。",
+          "pattern" : ""
+        },
+        "body" : {
+          "type" : "string"
+        },
+        "uri" : {
+          "type" : "string",
+          "example" : "/biblio/library.example.org%2F4a100c1c-292e-4fe3-8ce0-072d53abbd84/",
+          "description" : "リクエストのURI。\n\nAPIのベースURIからの相対パスで、先頭のスラッシュは必須である。",
+          "pattern" : "^/(?!batch).*"
+        }
+      }
+    },
+    "inline_response_207" : {
+      "properties" : {
+        "code" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "RFCで規定されるHTTPステータスコードのいずれか。",
+          "default" : 418
+        },
+        "content-type" : {
+          "type" : "string",
+          "format" : "mime",
+          "example" : "application/json",
+          "description" : "レスポンスのMIMEタイプ。"
+        },
+        "id" : {
+          "type" : "string",
+          "description" : "ユーザが指定したリクエストのID。"
+        },
+        "body" : {
+          "type" : "string"
+        }
+      },
+      "description" : "レスポンスの配列。"
+    }
+  }
+}
