@@ -34,7 +34,7 @@
             "schema" : {
               "type" : "array",
               "items" : {
-                "$ref" : "#/definitions/inline_response_207"
+                "$ref" : "#/definitions/Response"
               }
             }
           }
@@ -189,6 +189,32 @@
         "message" : "指定されたリソースは見つかりませんでした。"
       } ]
     },
+    "Response" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "ユーザが指定したリクエストのID。"
+        },
+        "code" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "RFCで規定されるHTTPステータスコードのいずれか。",
+          "default" : 418
+        },
+        "content-type" : {
+          "type" : "string",
+          "format" : "mime",
+          "example" : "application/json",
+          "description" : "レスポンスのMIMEタイプ。"
+        },
+        "body" : {
+          "type" : "string",
+          "description" : "レスポンスの本文。"
+        }
+      },
+      "description" : "レスポンスの配列。"
+    },
     "body" : {
       "required" : [ "id", "uri" ],
       "properties" : {
@@ -214,31 +240,6 @@
           "pattern" : "^/(?!batch).*"
         }
       }
-    },
-    "inline_response_207" : {
-      "properties" : {
-        "code" : {
-          "type" : "integer",
-          "format" : "int32",
-          "description" : "RFCで規定されるHTTPステータスコードのいずれか。",
-          "default" : 418
-        },
-        "content-type" : {
-          "type" : "string",
-          "format" : "mime",
-          "example" : "application/json",
-          "description" : "レスポンスのMIMEタイプ。"
-        },
-        "id" : {
-          "type" : "string",
-          "description" : "ユーザが指定したリクエストのID。"
-        },
-        "body" : {
-          "type" : "string",
-          "description" : "レスポンスの本文。"
-        }
-      },
-      "description" : "レスポンスの配列。"
     }
   }
 }
