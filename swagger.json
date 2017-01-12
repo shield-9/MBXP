@@ -2,7 +2,7 @@
   "swagger" : "2.0",
   "info" : {
     "description" : "Here's to next generation of library.",
-    "version" : "0.1.0",
+    "version" : "0.2.0",
     "title" : "Minerva API"
   },
   "host" : "api.minerva.example.org",
@@ -35,6 +35,49 @@
             "description" : "リクエストが0件だった場合",
             "schema" : {
               "$ref" : "#/definitions/NoRequest"
+            }
+          }
+        }
+      }
+    },
+    "/biblio/" : {
+      "get" : {
+        "tags" : [ "Biblio" ],
+        "summary" : "書誌情報の検索",
+        "description" : "このエンドポイントは指定された条件に該当する書誌に関する情報を返す。",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "query",
+          "description" : "書誌の識別子。\n形式は`{識別子の種別コード}{検索方法}:{識別子}`\n\n* *Minerva Central*へのリクエストにおいて、MLIDは使用できない。\n* MLIDを使用する場合、当該のMLIDを発行した*Minerva*環境への\n  リクエストでなければならない。",
+          "required" : false,
+          "type" : "string",
+          "pattern" : "^/(?!batch).*"
+        }, {
+          "name" : "a",
+          "in" : "query",
+          "required" : false,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "該当する書誌が存在する場合",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Biblio"
+              }
+            }
+          },
+          "404" : {
+            "description" : "該当する書誌が存在しない場合\n\nRFC 7807に準拠したレスポンスであることを明示するため、\n`content-type`ヘッダーは常に`application/problem+json`である。",
+            "schema" : {
+              "$ref" : "#/definitions/NotFound"
+            }
+          },
+          "default" : {
+            "description" : "予期せぬエラー\n\nRFC 7807に準拠したレスポンスであることを明示するため、\n`content-type`ヘッダーは常に`application/problem+json`である。",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
             }
           }
         }
