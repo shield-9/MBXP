@@ -194,7 +194,13 @@
     "NoRequest" : {
       "allOf" : [ {
         "$ref" : "#/definitions/Error"
-      }, { } ],
+      }, {
+        "properties" : {
+          "test" : {
+            "type" : "string"
+          }
+        }
+      } ],
       "example" : [ {
         "code" : 204,
         "message" : "バッチ処理するリクエストが指定されませんでした。"
