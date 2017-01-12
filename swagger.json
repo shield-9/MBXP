@@ -25,13 +25,16 @@
           }
         } ],
         "responses" : {
-          "204" : {
-            "description" : "リクエストが0件だった場合"
-          },
           "207" : {
             "description" : "バッチ処理の結果",
             "schema" : {
               "$ref" : "#/definitions/Responses"
+            }
+          },
+          "400" : {
+            "description" : "リクエストが0件だった場合",
+            "schema" : {
+              "$ref" : "#/definitions/NoRequest"
             }
           }
         }
