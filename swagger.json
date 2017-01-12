@@ -21,21 +21,17 @@
           "name" : "body",
           "required" : true,
           "schema" : {
-            "type" : "array",
-            "description" : "リクエストの配列。",
-            "items" : {
-              "$ref" : "#/definitions/body"
-            }
+            "$ref" : "#/definitions/Requests"
           }
         } ],
         "responses" : {
+          "204" : {
+            "description" : "リクエストが0件だった場合"
+          },
           "207" : {
-            "description" : "テスト",
+            "description" : "バッチ処理の結果",
             "schema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/definitions/Response"
-              }
+              "$ref" : "#/definitions/Responses"
             }
           }
         }
@@ -192,6 +188,56 @@
         "message" : "指定されたリソースは見つかりませんでした。"
       } ]
     },
+    "NoRequest" : {
+      "allOf" : [ {
+        "$ref" : "#/definitions/Error"
+      }, { } ],
+      "example" : [ {
+        "code" : 204,
+        "message" : "バッチ処理するリクエストが指定されませんでした。"
+      } ]
+    },
+    "Requests" : {
+      "type" : "array",
+      "description" : "リクエストの配列。",
+      "items" : {
+        "$ref" : "#/definitions/Request"
+      }
+    },
+    "Request" : {
+      "type" : "object",
+      "required" : [ "id", "uri" ],
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "リクエストのID。\n\nユーザは当該のバッチリクエスト内において、一意な値を\nこのプロパティに指定しなければならない。\nレスポンスはリクエストと同順であることが**保証されない。**\n\nまた、エンドユーザを特定できる情報などを含めてはいけない。",
+          "pattern" : ""
+        },
+        "method" : {
+          "type" : "string",
+          "description" : "リクエストのメソッド。",
+          "enum" : [ "GET", "POST", "PUT", "DELETE", "PATCH", "HEAD", "OPTIONS" ],
+          "default" : "GET"
+        },
+        "uri" : {
+          "type" : "string",
+          "example" : "/biblio/library.example.org%2F4a100c1c-292e-4fe3-8ce0-072d53abbd84/",
+          "description" : "リクエストのURI。\n\nAPIのベースURIからの相対パスで、先頭のスラッシュは必須である。",
+          "pattern" : "^/(?!batch).*"
+        },
+        "body" : {
+          "type" : "string",
+          "description" : "リクエストの本文。"
+        }
+      }
+    },
+    "Responses" : {
+      "type" : "array",
+      "description" : "レスポンスの配列。",
+      "items" : {
+        "$ref" : "#/definitions/Response"
+      }
+    },
     "Response" : {
       "type" : "object",
       "required" : [ "body", "code", "content-type", "id" ],
@@ -217,33 +263,6 @@
           "type" : "string",
           "example" : "I'm a teapot!",
           "description" : "レスポンスの本文。"
-        }
-      },
-      "description" : "レスポンスの配列。"
-    },
-    "body" : {
-      "required" : [ "id", "uri" ],
-      "properties" : {
-        "method" : {
-          "type" : "string",
-          "description" : "リクエストのメソッド。",
-          "enum" : [ "GET", "POST", "PUT", "DELETE", "PATCH", "HEAD", "OPTIONS" ],
-          "default" : "GET"
-        },
-        "id" : {
-          "type" : "string",
-          "description" : "リクエストのID。\n\nユーザは当該のバッチリクエスト内において、一意な値を\nこのプロパティに指定しなければならない。\nレスポンスはリクエストと同順であることが**保証されない。**\n\nまた、エンドユーザを特定できる情報などを含めてはいけない。",
-          "pattern" : ""
-        },
-        "body" : {
-          "type" : "string",
-          "description" : "リクエストの本文。"
-        },
-        "uri" : {
-          "type" : "string",
-          "example" : "/biblio/library.example.org%2F4a100c1c-292e-4fe3-8ce0-072d53abbd84/",
-          "description" : "リクエストのURI。\n\nAPIのベースURIからの相対パスで、先頭のスラッシュは必須である。",
-          "pattern" : "^/(?!batch).*"
         }
       }
     }
