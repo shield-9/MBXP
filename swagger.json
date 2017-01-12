@@ -48,7 +48,7 @@
         "parameters" : [ {
           "name" : "id",
           "in" : "query",
-          "description" : "書誌の識別子。\n形式は`{識別子の種別コード}{検索方法}:{識別子}`\n\n* *Minerva Central*へのリクエストにおいて、MLIDは使用できない。\n* MLIDを使用する場合、当該のMLIDを発行した*Minerva*環境への\n  リクエストでなければならない。",
+          "description" : "書誌の識別子。\n\n検索方法と指定子:\n* 前方一致: `^`\n* 部分一致: `*`\n* 後方一致: `$`\n\n形式は`{識別子の種別コード}{検索方法の指定子}:{識別子}`。\n\n* *Minerva Central*へのリクエストにおいて、MLIDは使用できない。\n* MLIDを使用する場合、当該のMLIDを発行した*Minerva*環境への\n  リクエストでなければならない。",
           "required" : false,
           "type" : "string",
           "pattern" : "^/(?!batch).*"
