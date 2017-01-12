@@ -80,6 +80,7 @@
   "definitions" : {
     "Biblio" : {
       "type" : "object",
+      "required" : [ "canonical", "creator", "id", "issued", "publisher", "title" ],
       "properties" : {
         "canonical" : {
           "type" : "string",
@@ -119,6 +120,7 @@
     },
     "Creator" : {
       "type" : "object",
+      "required" : [ "name" ],
       "properties" : {
         "id" : {
           "type" : "string",
@@ -131,6 +133,7 @@
     },
     "Publisher" : {
       "type" : "object",
+      "required" : [ "name" ],
       "properties" : {
         "id" : {
           "type" : "string",
@@ -191,6 +194,7 @@
     },
     "Response" : {
       "type" : "object",
+      "required" : [ "body", "code", "content-type", "id" ],
       "properties" : {
         "id" : {
           "type" : "string",
