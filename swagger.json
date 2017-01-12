@@ -194,6 +194,7 @@
       "properties" : {
         "id" : {
           "type" : "string",
+          "example" : "req1",
           "description" : "ユーザが指定したリクエストのID。"
         },
         "code" : {
@@ -210,6 +211,7 @@
         },
         "body" : {
           "type" : "string",
+          "example" : "I'm a teapot!",
           "description" : "レスポンスの本文。"
         }
       },
