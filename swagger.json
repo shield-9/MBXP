@@ -56,16 +56,14 @@
           "name" : "a",
           "in" : "query",
           "required" : false,
-          "type" : "string"
+          "type" : "integer",
+          "default" : 1
         } ],
         "responses" : {
           "200" : {
             "description" : "該当する書誌が存在する場合",
             "schema" : {
-              "type" : "array",
-              "items" : {
-                "$ref" : "#/definitions/Biblio"
-              }
+              "$ref" : "#/definitions/Biblios"
             }
           },
           "404" : {
@@ -158,6 +156,13 @@
           "format" : "date",
           "description" : "出版日。"
         }
+      }
+    },
+    "Biblios" : {
+      "type" : "array",
+      "description" : "書誌の配列。",
+      "items" : {
+        "$ref" : "#/definitions/Biblio"
       }
     },
     "Creator" : {
